@@ -29,37 +29,6 @@ class Wiener_linien_data {
                 let lines = line.lines;
                 for(let i of lines) {
                   createP(i.name + " -> " + i.towards + " | platform: " + i.platform + " | departures: ");
-                  for(let dep_time of i.dep
-let wd;
-
-function setup() {
-    wd = new Wiener_linien_data().getData();
-    // get the data from the API
-}
-
-
-class Wiener_linien_data {
-
-    constructor() {
-        this.data = [];
-        this.state = true;
-    }
-
-    getData() {
-        $.ajax({
-            method: 'GET',
-            url: 'https://w-linien.glitch.me/getData',
-            success: res => {
-                res = JSON.parse(res);
-                this.data = res;
-                let data = JSON.parse(res.data);
-                console.log(data.data);
-              
-              // loop through array
-              for(let line of data.data.monitors) {
-                let lines = line.lines;
-                for(let i of lines) {
-                  createP(i.name + " -> " + i.towards + " | platform: " + i.platform + " | departures: ");
                   for(let dep_time of i.departures.departure) {
                     createP("\t\ttime: " + dep_time.departureTime.countdown + "m " + ((dep_time.departureTime.countdown < 3) ? '⚡' : '🌈'));
                   }
